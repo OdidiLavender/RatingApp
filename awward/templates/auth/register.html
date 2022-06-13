@@ -1,0 +1,71 @@
+{% extends 'awwards/base.html' %}
+{% block content %}
+<div class="container">
+  {% if messages %}
+    <div class="messages me-5">
+        {% for message in messages %}
+        <h4 {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</h4>
+        {% endfor %}
+    </div>
+  {% endif %}
+</div>
+<div class="card border position-absolute top-50 start-50 translate-middle" style="width:20rem;">
+  <form class="my-3 mx-3" method="POST" action="">
+    {% csrf_token %}
+    <!-- username input -->
+    <div class="col mb-4">
+      <div class="form-outline">
+        <input type="text" id="form3Example2" name="username" class="form-control" />
+        <label class="form-label" for="form3Example2">Username</label>
+      </div>
+    </div>
+
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <input type="email" id="form3Example3" name="email"  class="form-control" />
+      <label class="form-label" for="form3Example3">Email address</label>
+    </div>
+
+    <!-- Password input -->
+    <div class="form-outline mb-4">
+      <input type="password" id="form3Example4" name="password"  class="form-control" />
+      <label class="form-label text-black" for="form3Example4">Password</label>
+    </div>
+
+    <!-- con_password input -->
+    <div class="form-outline mb-4">
+      <input type="password" id="form3Example4" name="confirm_password"  class="form-control" />
+      <label class="form-label text-black" for="form3Example4">Confirm password</label>
+    </div>
+
+    <!-- Submit button -->
+    <button type="submit" class="btn btn-primary btn-block mb-2">Sign up</button>
+
+    <!-- Register buttons -->
+    <div class="text-center">
+      <p class="text-black">or sign up with:</p>
+      <button type="button" class="btn btn-primary btn-floating mx-1">
+        <i class="fab fa-facebook-f"></i>
+      </button>
+
+      <button type="button" class="btn btn-primary btn-floating mx-1">
+        <i class="fab fa-google"></i>
+      </button>
+
+      <button type="button" class="btn btn-primary btn-floating mx-1">
+        <i class="fab fa-twitter"></i>
+      </button>
+
+      <button type="button" class="btn btn-primary btn-floating mx-1">
+        <i class="fab fa-github"></i>
+      </button>
+    </div>
+
+    <div class="text-center mt-2">
+      <small>Have an Account? <span class="ms-1"><a href="{% url 'signIn' %}">Sign In</a></span>  </small>
+    </div>
+  </form>
+</div>
+
+
+{% endblock %}
