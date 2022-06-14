@@ -1,0 +1,40 @@
+{% extends 'awwards/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container" style="width:50rem; margin-top:3rem;">
+    <div class="row">
+        <div class="col-md-5">
+            <form class="card border p-3 mx-3" method="POST" enctype="multipart/form-data" action="">
+                {% csrf_token %}
+                <!-- image input -->
+                <div class="mb-4">
+                    <label for="formFileMultiple" class="form-label">Upload Image</label>
+                    <input class="form-control" name="image" type="file" id="formFileMultiple" multiple />
+                </div>
+                <!-- bio input -->
+                <div class="form-outline mb-4">
+                    <textarea class="form-control" name="bio" id="textAreaExample" rows="4"></textarea>
+                    <label class="form-label" for="textAreaExample">Bio</label>
+                </div>
+            
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">Upload profile</button>
+            </form>
+        </div>
+        <div class="col-md-7">
+            <figure class="figure">
+                <img
+                  src="{{ profile.image.url }}"
+                  class="figure-img img-fluid rounded shadow-3 mb-3"
+                  alt="..."
+                />
+                <figcaption class="figure-caption">Bio: <br> {{ profile.bio }} </figcaption>
+            </figure>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

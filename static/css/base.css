@@ -1,0 +1,73 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: white;
+    color: rgb(0, 0, 0);
+    
+}
+  
+.dark-mode {
+    color: white;
+    background: rgb(0, 0, 0);
+}
+  
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+  
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.top:hover {
+    color: rgb(177, 177, 177);
+}
+  
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+  
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+/* home */
+/* .cord:hover img{
+    transform: scale(1.1);
+    transition: 0.2s ease-out;
+}  */
+.mask-1{
+    position: absolute;
+    top: 31.25rem;
+    width: 19.45vw;
+    border: 2px solid rgb(45, 8, 255);
+    opacity: 0;
+}
+.mask-1:hover {
+    opacity: 1;
+} 

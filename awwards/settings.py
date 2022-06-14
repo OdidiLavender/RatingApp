@@ -29,9 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2-zh!&0e0t#hp#s8zja0z_8w)b)4cvr9l^u2#!7cixez4=fhoh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS')
 
 # Application definition
 
@@ -82,23 +82,18 @@ WSGI_APPLICATION = 'awwards.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-PRODUCTION = config('PRODUCTION')
-if PRODUCTION == False:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': config('NAME'),
-            'USER': config('USER'),
-            'PASSWORD': config('PASSWORD'),
-            'HOST': config('HOST'),
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+}
 
-else:
-    DATABASES = {
-        'default': dj_database_url.config()
-    }
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', cast=Csv())
+PRODUCTION  = environ.get('PRODUCTION')
+# PRODUCTION = 'False'
+
+if PRODUCTION == 'True':
+    DATABASES['default'] = dj_database_url.config()
 
 
 # Password validation

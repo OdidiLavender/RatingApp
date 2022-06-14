@@ -1,0 +1,128 @@
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex" style="margin-left:-1.6rem"> <a href="{% url 'register' %}">register</a> <span style="margin-top:10.4px"> / </span> <a href="{% url 'signIn' %}" style="margin-left:-1.3rem">login</a> </li>
+        <li class="list-group-item"><a href="{% url 'home' %}"> Home</a></li>
+        <li class="list-group-item"><a href="{% url 'profile' %}"> Profile</a></li>
+      </ul>
+      <small class="card-footer text-muted d-flex">Turn to black
+        <div class="form-check form-switch ms-4" style="width:13px;">
+            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onclick="myFunction()"/>
+        </div>
+      </small>
+    </div>
+  </div>
+  <div id="main" style="height:2.8rem;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"  style="font-size:30px;cursor:pointer;">
+      <div class="container-fluid" style="margin-top:-1.1rem; height:2rem;">
+        <span class="navbar-brand pe-2 top" style=" max-height:100%; font-size:23px;cursor:pointer; border-right:1px solid rgba(128, 128, 128, 0.733); max-height:100%;" onclick="openNav()"><i class="fas fa-bars"></i> <span class="ms-1" >MENU</span></span>
+        <span class="navbar-nav position-absolute top-0 start-50 translate-middle" id="navbarCenteredExample">
+          <span class="nav-item mt-3"style="max-width:100%; font-size:2vw;">
+            BAZENGA AWWARDS.
+          </span>
+        </span>
+        <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+          >
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <form class="d-flex input-group w-auto mt-1" method="GET">
+                <span class="input-group-text border-0" id="search-addon">
+                  <i class="fas fa-search"></i>
+                </span>
+                <input
+                  name="search"
+                  type="search"
+                  class="form-control rounded"
+                  placeholder="Search"
+                  aria-label="Search"
+                  aria-describedby="search-addon"
+                />
+              </form>
+            </li>
+          </ul>
+         
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item"  style="max-width:100%; height:2.8rem;">
+              {% if messages %}
+                <div class="messages me-5">
+                  {% for message in messages %}
+                  <h4 {% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}  style="font-size:18px">{{ message }}</h4>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </li>
+            
+            {% if user.is_authenticated %}
+              <li class="nav-item" style="height:50px;  position:relative; left:1.55rem;  margin-top:1rem; max-width:100%;">
+                <!-- Avatar -->
+                <a  class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false">
+                  <img src="{{ profile.image.url }}"
+                    class="rounded-circle"
+                    height="40"
+                    alt=""
+                    loading="lazy"/>
+                 </a>
+                <ul class="border dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
+                  <li>
+                    <a class="dropdown-item" href="{% url 'profile' %}">My profile</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Settings</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="{% url 'signOut' %}">Logout</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item ms-2" style="background-color: #49c5b6; margin-top:10px; position:relative; left:1.55rem; width:100%; height:2.9rem;">
+                <a class="nav-link " style="margin-top:-0.5rem;" href="{% url 'post' %}"><span class="text-white" style="font-size:18px;">SUBMIT YOUR SITE!</span></a>
+              </li>
+              {% else %}
+                <li class="nav-item" style="max-width:100%; margin-top:26px;">
+                <span  class="d-flex" style="font-size:15px;"> ARE YOU A MEMBER? <span  class="d-flex"  style="margin-top:-10px;"> <a class="nav-link" href="{% url 'register' %}">REGISTER /</a><a class="nav-link" style="margin-left:-12px;" href="{% url 'signIn' %}">LOGIN </a></span>
+                </span></li>
+                <li class="nav-item ms-2 text-center" style=" background-color: #49c5b6; max-width:100%; margin-right:-1.5rem;">
+                  <a class="nav-link" href="#"><span class="text-white" style="font-size:18px">SUBMIT YOUR SITE!</span></a>
+                </li>
+            {% endif %}
+            
+          </ul>
+        </div>
+      </div>
+  
+    </nav>
+  
+  </div>
+  
+  <script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+  }
+  
+  function myFunction() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+  }
+  </script>

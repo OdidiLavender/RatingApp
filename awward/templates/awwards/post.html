@@ -1,0 +1,38 @@
+{% extends 'awwards/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="card border position-absolute top-50 start-50 translate-middle" style="margin-top:1rem;">
+   <form style="width:20rem;" class="m-3" method="POST" enctype="multipart/form-data" action="">
+        {% csrf_token %}
+        <!-- title input -->
+        <div class="form-outline mb-3">
+            <input type="text" name="title" id="form1" class="form-control" />
+            <label class="form-label" for="form1">Title</label>
+        </div>
+        <!-- image input -->
+        <div class="mb-4">
+            <label for="formFileMultiple" class="form-label">Upload Image</label>
+            <input class="form-control" name="screen" type="file" id="formFileMultiple" multiple/>
+        </div>
+        <!-- link input -->
+        <div class="form-outline mb-4">
+            <input type="text" name="link" id="form1" class="form-control" />
+            <label class="form-label" for="form1">Project link</label>
+        </div>
+        <!-- location input -->
+        <div class="form-outline mb-3">
+            <input type="text" name="location" id="form1" class="form-control" />
+            <label class="form-label" for="form1">Location</label>
+        </div>
+        
+        <!-- description input -->
+        <div class="form-outline mb-4">
+            <textarea class="form-control" name="description" id="textAreaExample" rows="4"></textarea>
+            <label class="form-label" for="textAreaExample">Description</label>
+        </div>
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-3">Upload profile</button>
+    </form>
+</div>
+{% endblock %}
